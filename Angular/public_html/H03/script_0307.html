@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>ng-click binnen ng-repeat</title>
+	<link href="../css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+
+	<!-- Controler As-syntaxis. De controller krijgt hier de alias 'ctrl' -->
+	<div class="container" ng-controller="myController as ctrl">
+		<h1>Kies een persoon</h1>
+		<!-- 1. De lijst met namen -->
+		<ul>
+			<!-- Vergeet niet om nu ook de alias te gebruiken voorafgaand aan de variabele!
+				Dus : 'ctrl.persons' in plaats van alleen 'persons' (zoals bij $scope gebruikelijk is)-->
+			<li ng-repeat="person in ctrl.persons">
+				<a href="#" ng-click="ctrl.showDetail(person)">
+					{{ person.name }} {{ person.lastname }}
+				</a>
+			</li>
+		</ul>
+		<hr />
+		<!-- 2. Details per persoon -->
+		<div>
+			<h3>{{ ctrl.voornaam }} {{ ctrl.achternaam }} </h3>
+			<strong>{{ ctrl.leeftijd }} jaar </strong>,
+			<a href="mailto:{{ ctrl.email}}">{{ ctrl.email }}</a>
+		</div>
+	</div>
+	<!-- ***************-->
+	<!-- Vendor scripts -->
+	<!-- ***************-->
+	<script src="../js/vendor/angular/angular.js"></script>
+	<!-- ***************-->
+	<!-- Custom scripts -->
+	<!-- ***************-->
+	<script>
+
+		angular.module('myApp', [])	// module maken
+			.controller('myController', [myController]); // minification safe syntaxis
+
+
+		function myController() {
+			// 1. cache de huidige controller ('this') in
+			// een variabele vm (=afkorting voor ViewModel)
+			var vm = this;
+
+			// 2. Plaats eigenschappen en functies rechtstreeks op de controller.
+			vm.persons = [
+				{ 'name': 'John', lastname: 'Visser', age: 23, email: 'john@visser.nl' },
+				{ 'name': 'Bob', lastname: 'Tasseur', age: 21, email: 'bob@tasseur.nl' },
+				{ 'name': 'Bart', lastname: 'Bever', age: 65, email: 'bart@bever.nl' },
+				{ 'name': 'Sandra', lastname: 'de Boer', age: 36, email: 'sandra@deboer.nl' },
+				{ 'name': 'Harry', lastname: 'de Vries', age: 7, email: 'harry@devries.nl' },
+				{ 'name': 'Peter', lastname: 'Kassenaar', age: 45, email: 'peter@kassenaar.nl' },
+				{ 'name': 'Michiel', lastname: 'de Rond', age: 37, email: 'michiel@derond.nl' },
+				{ 'name': 'Jeroen', lastname: 'van Spek', age: 18, email: 'jeroen@vanspek.nl' },
+				{ 'name': 'Irene', lastname: 'Nansen', age: 52, email: 'irende@nansen.nl' },
+				{ 'name': 'Mike', lastname: 'Schatgraver', age: 39, email: 'mike@schatgraver.nl' }];
+
+			// 3. klikken op een naam afvangen
+			vm.showDetail = function (person) {
+				// 3a. Gelukkig is de controller gecached in 'vm', want 'this' heeft binnen
+				//	deze functie een andere scope!
+				vm.voornaam = person.name;
+				vm.achternaam = person.lastname;
+				vm.leeftijd = person.age;
+				vm.email = person.email;
+			}
+
+			// 4. initiele waarde instellen
+			vm.showDetail(vm.persons[0]);
+		};
+	</script>
+</body>
+</html>

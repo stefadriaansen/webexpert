@@ -1,0 +1,21 @@
+﻿<style>
+  input{
+    margin-bottom: 10px;
+  }
+</style>
+<div>
+	<div class="jumbotron">
+		<h1>
+			Nieuwe persoon toevoegen</h1>
+		<!-- 2. Details per persoon -->
+		<input type="text" ng-model="addCtrl.person.name" class="input-lg" placeholder="voornaam"/><br />
+		<input type="text" ng-model="addCtrl.person.lastname" class="input-lg" placeholder="achternaam"/> <br />
+		<input type="text" ng-model="addCtrl.person.age" class="input-lg" placeholder="leeftijd"/><br />
+		<input type="email" ng-model="addCtrl.person.email" class="input-lg" placeholder="e-mailadres"/><br />
+
+		<a ng-click="addCtrl.addPerson()" class="btn btn-lg btn-primary">Toevoegen</a>
+
+	</div>
+	<hr/>
+	<a href="#/home" class="btn btn-lg btn-warning">Annuleren</a>
+</div>

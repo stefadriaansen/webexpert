@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="carApp">
+<head>
+	<title>Synthese Oefening</title>
+	<link href="css/bootstrap.css" rel="stylesheet" />
+	<link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+
+	<div class="container" >
+		<header>
+			<a class="col-xs-6 col-md-4 bg-primary" ng-href=""><h5>Auto</h5></a>
+			<a class="col-xs-6 col-md-4 bg-primary" ng-href=""><h5>Configurator<h5></a>
+			<a class="col-xs-6 col-md-4 bg-primary" ng-href=""><h5>Overzicht offerte<h5></a>
+		</header>
+		<div ng-view>
+			<!-- Hierin worden dynamisch de Views geladen -->
+		</div>
+		<footer>
+		</footer>
+	</div>
+
+
+	<!-- ***************-->
+	<!-- Vendor scripts -->
+	<!-- ***************-->
+	<script src="js/vendor/angular/angular.js"></script>
+	<script src="js/vendor/angular-route/angular-route.js"></script>
+
+	<!-- ***************-->
+	<!-- Custom scripts -->
+	<!-- ***************-->
+	<script src="app/app.js"></script>
+
+	<script src="controllers/autoController.js"></script>
+	<script src="controllers/configuratorController.js"></script>
+	<script src="controllers/overzichtController.js"></script>
+		
+	<script src="services/appConstants.js"></script>
+	<script src="services/carFactory.js"></script>
+</body>
+</html>

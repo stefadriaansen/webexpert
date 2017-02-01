@@ -1,0 +1,41 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+	<title>Voorbeelden Values en Constants</title>
+	<link href="../css/bootstrap.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container" ng-controller="myController as myCtrl">
+	<h1>Werken met Constants</h1>
+
+	<div class="jumbotron">
+
+		<h2>Applicatienaam: {{ myCtrl.appName }}</h2>
+
+		<h3>Versie: {{ myCtrl.appVersion }}</h3>
+
+	</div>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aut autem, consectetur, corporis dolorum
+		ducimus ea eveniet expedita impedit molestiae nisi non omnis pariatur quaerat ratione, rem sit suscipit
+		temporibus.</p>
+	<a href="#" class="btn btn-primary">{{ myCtrl.isLoggedIn}}</a>
+	<!-- Voorbeeld van een value -->
+	<footer>
+		<hr />
+		<h4>Dit is een value : (C) 2014 - {{ myCtrl.companyName }}</h4>
+	</footer>
+</div>
+<!-- ***************-->
+<!-- Vendor scripts -->
+<!-- ***************-->
+<script src="../js/vendor/angular/angular.js"></script>
+
+<!-- ***************-->
+<!-- Custom scripts -->
+<!-- ***************-->
+<script src="services/0505_appConstants.js"></script>
+<script src="services/0505_appValue.js"></script>
+<script src="controllers/0505_myController.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Routing Module</title>
+	<link href="../css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+
+	<div class="container" >
+		<header>
+			...
+		</header>
+		<h1>Eenvoudige Routing</h1>
+		<div ng-view>
+			<!-- Hierin worden dynamisch de Views geladen -->
+		</div>
+		<footer>
+			...
+		</footer>
+	</div>
+
+
+	<!-- ***************-->
+	<!-- Vendor scripts -->
+	<!-- ***************-->
+	<script src="../js/vendor/angular/angular.js"></script>
+	<script src="../js/vendor/angular-route/angular-route.js"></script>
+
+	<!-- ***************-->
+	<!-- Custom scripts -->
+	<!-- ***************-->
+	<script>	
+		// Dependency op ngRoute toevoegen.
+		angular.module('myApp', ['ngRoute']);
+		//.... Hier de routing-table gaan instellen.
+	</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Werken met $http</title>
+	<link href="../css/bootstrap.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container" ng-controller="myController as myCtrl">
+	<h1>Werken met $http</h1>
+
+	<p>De gegevens staan in &quot;persons.json&quot; op de server.</p>
+
+	<div>
+		<!-- 1. De lijst met namen -->
+		<ul>
+			<li ng-repeat="person in myCtrl.persons">
+				{{person.id}} - {{ person.name }} {{ person.lastname }}
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+<!-- ***************-->
+<!-- Vendor scripts -->
+<!-- ***************-->
+<script src="../js/vendor/angular/angular.js"></script>
+
+<!-- ***************-->
+<!-- Custom scripts -->
+<!-- ***************-->
+<script>
+	// Alle code in een bestand. Normaal gesproken zou u dit
+	// verspreiden over verschillende bestanden en mappen.
+
+	// 1. Module maken.
+	angular.module('myApp', []);
+
+	// 2. Controller, factory en globals maken
+	angular.module('myApp')
+			.controller('myController', myController)
+			.factory('personFactory', personFactory)
+			.constant('GLOBALS', {
+				personUrl: 'data/persons.json'
+			});
+
+	// 3. Controller implementeren
+	myController.$inject = ['personFactory'];
+	function myController(personFactory) {
+		var vm = this;
+
+		personFactory.getPersons()
+				.success(function (persons) {
+					vm.persons = persons;
+				})
+				.error(function (err) {
+					alert('Er is een fout opgetreden!')
+				});
+	}
+
+	// 4. Factory implementeren, let op injectie van $http en GLOBALS
+	personFactory.$inject = ['$http', 'GLOBALS'];
+	function personFactory($http, GLOBALS) {
+		var factory = {};
+
+		factory.getPersons = function () {
+			return $http({
+				method: 'GET',
+				url: GLOBALS.personUrl
+			});
+		};
+		return factory;
+	}
+</script>
+</body>
+</html>

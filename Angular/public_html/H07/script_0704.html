@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>ng-class</title>
+	<link href="../css/bootstrap.css" rel="stylesheet"/>
+	<style>
+		.rood {
+			background-color: #b92c28;
+			color: #fff;
+		}
+
+		.wit {
+			background-color: #fff;
+			color: #000;
+		}
+
+		.blauw {
+			background-color: #4390AE;
+			color: white;
+		}
+		.border {
+			border: 4px solid #313131;
+			border-radius: 4px;
+			padding: 4px;
+			margin: 4px;
+		}
+		.font{
+			font-family: "Georgia", Helvetica, Sans-Serif;
+		}
+		.size30{
+			font-size: 30px;
+		}
+	</style>
+</head>
+<body>
+
+<div class="container" ng-controller="myController as myCtrl">
+	<h1>ng-class</h1>
+	<input type="checkbox" ng-model="myCtrl.color"/>Kleur
+	<input type="checkbox" ng-model="myCtrl.border"/>Rand
+	<input type="checkbox" ng-model="myCtrl.size"/>Groter
+	<input type="checkbox" ng-model="myCtrl.font"/>Lettertype
+	<div ng-class="{rood: myCtrl.color, border: myCtrl.border, size30: myCtrl.size, font: myCtrl.font}">
+		<h2>Koptekst</h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit
+		in malesuada semper mi, id sollicitudin urna fermentum ut fusce varius nisl ac ipsum gravida vel pretium
+		tellus.
+	</div>
+</div>
+</div>
+
+
+<!-- ***************-->
+<!-- Vendor scripts -->
+<!-- ***************-->
+<script src="../js/vendor/angular/angular.js"></script>
+
+<!-- ***************-->
+<!-- Custom scripts -->
+<!-- ***************-->
+<script>
+	// Alle code in een bestand. Normaal gesproken zou u dit
+	// verspreiden over verschillende bestanden en mappen.
+
+	// 1. Module maken.
+	angular.module('myApp', []);
+
+	// 2. Controller, factory en globals maken
+	angular.module('myApp')
+			.controller('myController', myController);
+
+	// 3. Controller implementeren
+	function myController() {
+		var vm = this;
+
+	}
+</script>
+</body>
+</html>

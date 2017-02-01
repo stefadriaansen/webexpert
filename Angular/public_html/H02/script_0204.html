@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html ng-app>
+<head>
+	<title>Directive ng-init en ng-repeat</title>
+	<link href="../css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+
+	<div class="container"
+		 ng-init="names=['John', 'Bob', 'Sandra', 'Harry', 'Peter', 'Michiel', 'Jeroen', 'Irene']">
+		<h1>ng-init en ng-repeat</h1>
+		<!-- directive ng-repeat voor het loopen over een data-collectie -->
+		<ul>
+			<li ng-repeat="firstName in names">Hello {{ firstName }}</li>
+		</ul>
+	</div>
+
+
+	<!-- ***************-->
+	<!-- Vendor scripts -->
+	<!-- ***************-->
+	<script src="../js/vendor/angular/angular.js"></script>
+
+	<!-- ***************-->
+	<!-- Custom scripts -->
+	<!-- ***************-->
+	<script>
+		// ...eigen script
+	</script>
+</body>
+</html>

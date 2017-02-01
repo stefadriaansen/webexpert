@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Werken met Service</title>
+	<link href="../css/bootstrap.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container">
+	<h1>Werken met een service</h1>
+
+	<div ng-view></div>
+	<footer>
+		<hr/>
+		Copyright (C) - 2014
+	</footer>
+</div>
+
+
+<!-- ***************-->
+<!-- Vendor scripts -->
+<!-- ***************-->
+<script src="../js/vendor/angular/angular.js"></script>
+<script src="../js/vendor/angular-route/angular-route.js"></script>
+
+<!-- ***************-->
+<!-- Custom scripts -->
+<!-- ***************-->
+<script src="app/0504_app.js"></script>
+<!-- Controllers -->
+<script src="controllers/0504_homeController.js"></script>
+<script src="controllers/0504_detailController.js"></script>
+<script src="controllers/0504_addController.js"></script>
+
+<!-- Service -->
+<script src="services/0504_personService.js"></script>
+</body>
+</html>

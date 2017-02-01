@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Werken met $http</title>
+	<link href="../css/bootstrap.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container" ng-controller="myController as myCtrl">
+	<h1>Werken met $http</h1>
+
+	<p>HTML verwerken in de foutmeldingsuitvoer.</p>
+
+	<!-- 1. De lijst met namen -->
+	<ul>
+		<li ng-repeat="person in myCtrl.persons">
+			{{person.id}} - {{ person.name }} {{ person.lastname }}
+		</li>
+	</ul>
+	<div ng-show="myCtrl.errorMsg">
+		<h3>Foutmelding van de server: </h3>
+		<p ng-bind-html="myCtrl.errorMsg"> </p>
+		<hr />
+		<p><em>Status: {{ myCtrl.status }} </em></p>
+	</div>
+
+</div>
+
+
+<!-- ***************-->
+<!-- Vendor scripts -->
+<!-- ***************-->
+<script src="../js/vendor/angular/angular.js"></script>
+<script src="../js/vendor/angular-sanitize/angular-sanitize.min.js"></script>
+
+<!-- ***************-->
+<!-- Custom scripts -->
+<!-- ***************-->
+<script>
+	// Alle code in een bestand. Normaal gesproken zou u dit
+	// verspreiden over verschillende bestanden en mappen.
+
+	// 1. Module maken, nu inclusief ngSanitize.
+	angular.module('myApp', ['ngSanitize']);
+
+	// 2. Controller, factory en globals maken
+	angular.module('myApp')
+			.controller('myController', myController)
+			.factory('personFactory', personFactory)
+			.constant('GLOBALS', {
+				personUrl: 'data/persons.jsonXXX' // <== FOUTIEVE URL
+			});
+
+	// 3. Controller implementeren
+	myController.$inject = ['personFactory'];
+	function myController(personFactory) {
+		var vm = this;
+		vm.errorMsg = '';
+		vm.status = '';
+
+		personFactory.getPersons()
+				.success(function (persons) {
+					vm.persons = persons;
+				})
+				.error(function (err, status) {
+					vm.errorMsg = err;
+					vm.status = status;
+				});
+	}
+
+	// 4. Factory implementeren, let op injectie van $http en GLOBALS
+	personFactory.$inject = ['$http', 'GLOBALS'];
+	function personFactory($http, GLOBALS) {
+		var factory = {};
+
+		factory.getPersons = function () {
+			return $http({
+				method: 'GET',
+				url: GLOBALS.personUrl
+			});
+		};
+		return factory;
+	}
+</script>
+</body>
+</html>

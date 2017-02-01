@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html ng-app>
+<head>
+	<title>AngularJS Filters</title>
+	<link href="../css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+
+	<div class="container"
+		 ng-init="persons=[{'name' : 'John', lastname:'Visser'},{'name' : 'Bob', lastname:'Tasseur'}, {'name' : 'Bart', lastname:'Bever'} ,{'name' : 'Sandra', lastname:'de Boer'},{'name' : 'Harry', lastname:'de Vries'}, {'name' : 'Peter', lastname:'Kassenaar'}, {'name' : 'Michiel', lastname:'de Rond'}, {'name':  'Jeroen', lastname:'van Spek'}, {'name' : 'Irene', lastname:'Nansen'},{'name': 'Mike', lastname:'Schatgraver'}]">
+		<h1>Filteren en sorteren</h1>
+		<p>
+			<input type="checkbox" ng-model="reversed" />Omgekeerd sorteren
+		</p>
+		<p>
+			<input type="text" ng-model="naam" class="input-lg" placeholder="filter op naam..." />
+		</p>
+		<ul>
+			<li ng-repeat="person in persons | orderBy: 'name' : reversed | filter : naam ">
+				{{ person.name }} -  {{ person.lastname }}
+			</li>
+		</ul>
+	</div>
+
+
+	<!-- ***************-->
+	<!-- Vendor scripts -->
+	<!-- ***************-->
+	<script src="../js/vendor/angular/angular.js"></script>
+
+	<!-- ***************-->
+	<!-- Custom scripts -->
+	<!-- ***************-->
+	<script>
+		// ...eigen script
+	</script>
+</body>
+</html>

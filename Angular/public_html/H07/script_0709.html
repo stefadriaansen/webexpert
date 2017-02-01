@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>ng-submit</title>
+	<link href="../css/bootstrap.css" rel="stylesheet"/>
+</head>
+
+<body>
+
+<div class="container" ng-controller="myController as myCtrl">
+	<h1>ng-submit</h1>
+
+	<form ng-submit="myCtrl.submitForm()" name="form1">
+		E-mail: <input type="email" placeholder="E-mailadres" ng-model="myCtrl.email" class="input-lg"/>
+		<input type="submit" value="Verzenden!" class="btn btn-primary"/>
+	</form>
+	<p>{{ myCtrl.values  }}</p>
+</div>
+
+
+<!-- ***************-->
+<!-- Vendor scripts -->
+<!-- ***************-->
+<script src="../js/vendor/angular/angular.js"></script>
+
+<!-- ***************-->
+<!-- Custom scripts -->
+<!-- ***************-->
+<script>
+	// Alle code in een bestand. Normaal gesproken zou u dit
+	// verspreiden over verschillende bestanden en mappen.
+
+	// 1. Module maken.
+	angular.module('myApp', []);
+
+	// 2. Controller, factory en globals maken
+	angular.module('myApp')
+			.controller('myController', myController);
+
+	// 3. Controller implementeren
+	function myController() {
+		var vm = this;
+		vm.values = [];
+		vm.submitForm = function () {
+			vm.values.push(vm.email);
+			// hier eventueel Ajax-call uitvoeren naar webserver.
+		}
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>$http-calls chaining met .then()</title>
+	<link href="../css/bootstrap.css" rel="stylesheet"/>
+	<style>
+		.moviePoster {
+			float: left;
+			height: 200px;
+			padding-right: 10px;
+		}
+
+	</style>
+</head>
+<body>
+
+<div class="container" ng-controller="myController as myCtrl">
+	<h1>Filmgegevens ophalen via de Open Movie Database</h1>
+
+	<p>
+		<input type="text" class="input-lg"
+			   ng-model="myCtrl.movieTitle" placeholder="Titel van film..."/>
+		<button class="btn btn-success" ng-click="myCtrl.getMovie()">Zoek film</button>
+	</p>
+	<!-- 1. Gevonden Top-film -->
+	<div class="jumbotron" ng-show="myCtrl.showMovie">
+		<img ng-src="{{ myCtrl.movie.Poster }}" class="moviePoster"/>
+
+		<h1>{{ myCtrl.movie.Title }}</h1>
+
+		<h2>Uitgekomen op {{ myCtrl.movie.Released}}</h2>
+
+		<p>{{ myCtrl.movie.Plot }}</p>
+	</div>
+	<!-- 2. Gevonden Related Films -->
+	<div ng-show="myCtrl.showRelated">
+		<h2>Zie ook:</h2>
+		<table class="table table-bordered table-striped">
+			<tr>
+				<th>id</th>
+				<th>Titel</th>
+				<th>Jaar</th>
+			</tr>
+			<tr ng-repeat="relatedMovie in myCtrl.relatedMovies | orderBy:'Year' : true ">
+				<td>{{ relatedMovie.imdbID }}</td>
+				<td>{{relatedMovie.Title}}</td>
+				<td>{{relatedMovie.Year}}</td>
+			</tr>
+		</table>
+		<!-- TODO: Error handling -->
+	</div>
+</div>
+
+
+<!-- ***************-->
+<!-- Vendor scripts -->
+<!-- ***************-->
+<script src="../js/vendor/angular/angular.js"></script>
+
+<!-- ***************-->
+<!-- Custom scripts -->
+<!-- ***************-->
+<script>
+	// Alle code in een bestand. Normaal gesproken zou u dit
+	// verspreiden over verschillende bestanden en mappen.
+
+	// 1. Module maken.
+	angular.module('myApp', []);
+
+	// 2. Controller, factory en globals maken
+	angular.module('myApp')
+			.controller('myController', myController)
+			.service('movieService', movieService)
+			.constant('GLOBALS', {
+				urlMovieByTitle: 'http://www.omdbapi.com/?t=', // Zie http://www.omdbapi.com/
+				urlrelatedMovies: 'http://www.omdbapi.com/?s='
+			});
+
+	// 3. Controller implementeren
+	myController.$inject = ['movieService'];
+	function myController(movieService) {
+		var vm = this;
+		vm.showMovie = false;
+		vm.showRelated = false;
+
+		vm.getMovie = function () {
+			movieService.getMovie(vm.movieTitle)
+					.then(function (movie) { // 1e call
+						vm.movie = movie.data;
+						vm.showMovie = true;
+						vm.showRelated = true;
+						return movieService.getRelatedMovies(vm.movieTitle)
+					})
+					.then(function (movies) { // 2e call
+						vm.relatedMovies = movies.data.Search;
+					});
+		};
+	}
+
+	// 4. Service implementeren, let op injectie van $http en GLOBALS
+	movieService.$inject = ['$http', 'GLOBALS'];
+	function movieService($http, GLOBALS) {
+		// Haalt 1 film op (de 'topper')
+		this.getMovie = function (movieTitle) {
+			return $http({
+				url: GLOBALS.urlMovieByTitle + movieTitle,
+				method: 'GET'
+			});
+		}
+
+		// Haalt serie films op
+		this.getRelatedMovies = function (movieTitle) {
+			return $http({
+				url: GLOBALS.urlrelatedMovies + movieTitle,
+				method: 'GET'
+			});
+		}
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Werken met $http</title>
+	<link href="../css/bootstrap.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container" ng-controller="myController as myCtrl">
+	<h1>Persoonsgegevens ophalen via filltext.com</h1>
+
+	<p>
+		<button class="btn btn-success" ng-click="myCtrl.getPersons()">Haal personen</button>
+		<button class="btn btn-success" ng-click="myCtrl.emptyTable()">Leegmaken</button>
+	</p>
+
+	<!-- 1. De lijst met namen -->
+	<table class="table table-bordered table-striped">
+		<tr>
+			<th>id</th>
+			<th>Voornaam</th>
+			<th>Achternaam</th>
+			<th>Email</th>
+		</tr>
+		<tr ng-repeat="person in myCtrl.persons">
+			<td>{{ person.id }}</td>
+			<td>{{person.fname}}</td>
+			<td>{{person.lname}}</td>
+			<td>{{person.email}}</td>
+		</tr>
+	</table>
+	<!-- TODO: Error handling -->
+</div>
+
+
+<!-- ***************-->
+<!-- Vendor scripts -->
+<!-- ***************-->
+<script src="../js/vendor/angular/angular.js"></script>
+
+<!-- ***************-->
+<!-- Custom scripts -->
+<!-- ***************-->
+<script>
+	// Alle code in een bestand. Normaal gesproken zou u dit
+	// verspreiden over verschillende bestanden en mappen.
+
+	// 1. Module maken, nu inclusief ngSanitize.
+	angular.module('myApp', []);
+
+	// 2. Controller, factory en globals maken
+	angular.module('myApp')
+			.controller('myController', myController)
+			.factory('personFactory', personFactory)
+			.constant('GLOBALS', {
+				personUrl: 'http://www.filltext.com/?rows=15&id={index}&fname={firstName}&lname={lastName}&email={email}'
+			});
+
+	// 3. Controller implementeren
+	myController.$inject = ['personFactory'];
+	function myController(personFactory) {
+		var vm = this;
+
+		// 1. Personen ophalen via factory
+		vm.getPersons = function () {
+			personFactory.getPersons()
+					.success(function (persons) {
+						vm.persons = persons;
+					})
+					.error(function (err, status) {
+						alert('Er is een fout opgetreden: ' + err);
+					});
+		};
+		// 2. Tabel leegmaken
+		vm.emptyTable = function () {
+			vm.persons = [];
+		}
+	}
+
+	// 4. Factory implementeren, let op injectie van $http en GLOBALS
+	personFactory.$inject = ['$http', 'GLOBALS'];
+	function personFactory($http, GLOBALS) {
+		var factory = {};
+
+		factory.getPersons = function () {
+			return $http({
+				method: 'GET',
+				url: GLOBALS.personUrl,
+				cache: true // <== Voorkom extra http-call door gegevens te cachen
+			});
+		};
+		return factory;
+	}
+</script>
+</body>
+</html>

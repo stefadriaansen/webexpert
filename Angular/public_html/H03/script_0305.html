@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>ng-click binnen ng-repeat</title>
+	<link href="../css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+
+	<div class="container" ng-controller="myController">
+		<h1>Kies een persoon</h1>
+		<!-- 1. De lijst met namen -->
+		<ul>
+			<li ng-repeat="person in persons">
+				<a href="#" ng-click="showDetail(person)">
+					{{ person.name }} {{ person.lastname }}
+				</a>
+			</li>
+		</ul>
+		<hr />
+		<!-- 2. Details per persoon -->
+		<div>
+			<h3>{{ voornaam }} {{ achternaam }} </h3>
+			<strong>{{ leeftijd }} jaar </strong>,
+			<a href="mailto:{{ email }}">{{ email }}</a>
+		</div>
+	</div>
+	<!-- ***************-->
+	<!-- Vendor scripts -->
+	<!-- ***************-->
+	<script src="../js/vendor/angular/angular.js"></script>
+	<!-- ***************-->
+	<!-- Custom scripts -->
+	<!-- ***************-->
+	<script>
+		// Een controller is gewoon een JavaScript-functie
+		var app = angular.module('myApp', []);
+		app.controller('myController',
+			function ($scope) {
+				// 1. array met namen
+				$scope.persons = [
+					{ 'name': 'John', lastname: 'Visser', age: 23, email: 'john@visser.nl' },
+					{ 'name': 'Bob', lastname: 'Tasseur', age: 21, email: 'bob@tasseur.nl' },
+					{ 'name': 'Bart', lastname: 'Bever', age: 65, email: 'bart@bever.nl' },
+					{ 'name': 'Sandra', lastname: 'de Boer', age: 36, email: 'sandra@deboer.nl' },
+					{ 'name': 'Harry', lastname: 'de Vries', age: 7, email: 'harry@devries.nl' },
+					{ 'name': 'Peter', lastname: 'Kassenaar', age: 45, email: 'peter@kassenaar.nl' },
+					{ 'name': 'Michiel', lastname: 'de Rond', age: 37, email: 'michiel@derond.nl' },
+					{ 'name': 'Jeroen', lastname: 'van Spek', age: 18, email: 'jeroen@vanspek.nl' },
+					{ 'name': 'Irene', lastname: 'Nansen', age: 52, email: 'irende@nansen.nl' },
+					{ 'name': 'Mike', lastname: 'Schatgraver', age: 39, email: 'mike@schatgraver.nl' }];
+
+				// 2. klikken op een naam afvangen
+				$scope.showDetail = function (person) {
+					$scope.voornaam = person.name;
+					$scope.achternaam = person.lastname;
+					$scope.leeftijd = person.age;
+					$scope.email = person.email;
+				}
+
+				// 3. initiele waarde instellen
+				$scope.showDetail($scope.persons[0]);
+
+			});
+	</script>
+</body>
+</html>

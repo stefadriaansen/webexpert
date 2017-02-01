@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Werken met Factory</title>
+	<link href="../css/bootstrap.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container">
+	<h1>Werken met een factory</h1>
+
+	<div ng-view></div>
+	<footer>
+		<hr/>
+		Copyright (C) - 2014
+	</footer>
+</div>
+
+
+<!-- ***************-->
+<!-- Vendor scripts -->
+<!-- ***************-->
+<script src="../js/vendor/angular/angular.js"></script>
+<script src="../js/vendor/angular-route/angular-route.js"></script>
+
+<!-- ***************-->
+<!-- Custom scripts -->
+<!-- ***************-->
+<script src="app/0501_app.js"></script>
+<!-- Controllers -->
+<script src="controllers/0501_homeController.js"></script>
+<!-- Factory -->
+<script src="services/0501_personFactory.js"></script>
+
+</body>
+</html>

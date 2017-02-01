@@ -1,0 +1,14 @@
+<div>
+
+	Automerk
+	<select>
+		<option ng-repeat="auto in autoCtrl.autos">{{auto.merk}}</option>
+	</select>
+
+	<div ng-show="myCtrl.errorMsg">
+		<h3>Foutmelding van de server: </h3>
+		{{ myCtrl.errorMsg }}
+		<hr />
+		<p><em>Status: {{ myCtrl.status }} </em></p>
+	</div>
+</div>

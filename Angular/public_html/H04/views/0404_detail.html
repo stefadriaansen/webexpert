@@ -1,0 +1,13 @@
+﻿<div>
+	<div class="jumbotron">
+		<h1>Gegevens van: {{ detailCtrl.person.name }} {{ detailCtrl.person.lastname }}</h1>
+		<!-- 2. Details per persoon -->
+		<h2> Volledige naam: {{ detailCtrl.person.name}} {{ detailCtrl.person.lastname}} </h2>
+
+		<h2>ID: {{ detailCtrl.person.id }}</h2>
+		<strong>{{ detailCtrl.person.age}} jaar </strong>,
+		<a href="mailto:{{ detailCtrl.person.email }}">{{ detailCtrl.person.email }}</a>
+	</div>
+	<hr/>
+	<a href="#/home" class="btn btn-lg btn-success">Home</a>
+</div>

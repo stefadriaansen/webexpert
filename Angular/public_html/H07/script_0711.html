@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>ng-focus en ng-blur</title>
+	<link href="../css/bootstrap.css" rel="stylesheet"/>
+</head>
+
+<body>
+
+<div class="container" ng-controller="myController as myCtrl">
+	<h1>ng-focus en ng-blur</h1>
+
+	<input type="text"
+		   ng-focus="myCtrl.gotFocus()"
+		   ng-blur="myCtrl.lostFocus()"
+		   ng-model="myCtrl.message"
+		   placeholder="Klik in het tekstvak...	"/>
+</div>
+
+
+<!-- ***************-->
+<!-- Vendor scripts -->
+<!-- ***************-->
+<script src="../js/vendor/angular/angular.js"></script>
+
+<!-- ***************-->
+<!-- Custom scripts -->
+<!-- ***************-->
+<script>
+	// Alle code in een bestand. Normaal gesproken zou u dit
+	// verspreiden over verschillende bestanden en mappen.
+
+	// 1. Module maken.
+	angular.module('myApp', []);
+
+	// 2. Controller, factory en globals maken
+	angular.module('myApp')
+			.controller('myController', myController);
+
+	// 3. Controller implementeren
+	function myController() {
+		var vm = this;
+		vm.gotFocus = function () {
+			vm.message = "Ik heb focus! (klik buiten het tekstvak)";
+		};
+		vm.lostFocus = function () {
+			vm.message = "";
+		};
+	}
+</script>
+</body>
+</html>

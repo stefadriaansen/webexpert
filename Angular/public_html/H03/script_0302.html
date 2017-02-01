@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Eenvoudige Controller</title>
+	<link href="../css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+
+	<div class="container" ng-controller="testController">
+		<h1>Eenvoudige controller</h1>
+		<h2>{{ name }}</h2>
+		<p>Favoriete stad: {{ city }}</p>
+		<p>Favoriet land: {{ country }}</p>
+	</div>
+
+
+	<!-- ***************-->
+	<!-- Vendor scripts -->
+	<!-- ***************-->
+	<script src="../js/vendor/angular/angular.js"></script>
+
+	<!-- ***************-->
+	<!-- Custom scripts -->
+	<!-- ***************-->
+	<script>
+		// Een controller is gewoon een JavaScript-functie
+		var app = angular.module('myApp', []);
+		app.controller('testController',
+			function ($scope) {
+				$scope.name = 'Peter Kassenaar';
+				$scope.city = 'Groningen';
+				$scope.country = 'Verenigde Staten';
+			});
+	</script>
+</body>
+</html>

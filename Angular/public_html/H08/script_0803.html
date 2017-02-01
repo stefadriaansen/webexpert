@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Custom directives</title>
+	<link href="../css/bootstrap.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container" ng-controller="myController as myCtrl">
+	<h2>Custom directives - een eigen klok</h2>
+	<!-- Drie keer een custom directive -->
+	<div my-clock></div>
+	<div my-clock></div>
+	<div my-clock></div>
+</div>
+
+<!-- ***************-->
+<!-- Vendor scripts -->
+<!-- ***************-->
+<script src="../js/vendor/angular/angular.js"></script>
+
+<!-- ***************-->
+<!-- Custom scripts -->
+<!-- ***************-->
+<script>
+	//**************************
+	// BAD PRACTICE: Anti-pattern
+	//***********************
+	// In de template van de directive wordt nu rechtstreeks
+	// gebruik gemaakt van variabelen in de parent controller (timeZone en city).
+	// Dit maakt de directive afhankelijk van de controller en verminderd de
+	// herbruikbaarheid.
+
+	// 1. Module maken.
+	angular.module('myApp', []);
+
+	// 2. Directive maken
+	angular.module('myApp')
+			.directive('myClock', myClock)
+			.controller('myController', myController);
+
+	// 3. Controller implementeren
+	function myController(){
+		this.timeZone = "NL";
+		this.city = "Amsterdam"
+	}
+	// 4. Directive implementeren
+	function myClock() {
+		var directive = {
+			template: '<div>{{ myCtrl.city }} ({{myCtrl.timeZone}}): {{ vm.time | date : "HH:mm:ss"}}</div>',
+			controller: clockController,	// controllerfunctie
+			controllerAs: 'vm'				// controllerAs-alias
+		};
+		return directive;
+	}
+
+	// 4. Controller voor de directive
+	clockController.$inject=['$interval'];
+	function clockController($interval){
+		var vm = this;
+		// interval loop
+		var update= $interval(function () {
+			vm.time = new Date();
+		}, 1000);
+	}
+</script>
+</body>
+</html>

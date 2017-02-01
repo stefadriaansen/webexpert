@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>ng-if</title>
+	<link href="../css/bootstrap.css" rel="stylesheet"/>
+	<style>
+		.kader {
+			width: 400px;
+			height: 90px;
+			border: 1px solid #333;
+			background-color: #4390AE;
+			color: white;
+			padding: 4px;
+			margin: 4px;
+		}
+	</style>
+</head>
+<body>
+
+<div class="container" ng-controller="myController as myCtrl">
+	<h1>ng-if</h1>
+
+		<div class="checkbox">
+			<label>
+				<input type="checkbox" ng-model="myCtrl.checked"> Tekst tonen
+			</label>
+		</div>
+		<div class="kader" ng-if="myCtrl.checked">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit
+			in malesuada semper mi, id sollicitudin urna fermentum ut fusce varius nisl ac ipsum gravida vel pretium
+			tellus.
+		</div>
+	</div>
+</div>
+
+
+<!-- ***************-->
+<!-- Vendor scripts -->
+<!-- ***************-->
+<script src="../js/vendor/angular/angular.js"></script>
+
+<!-- ***************-->
+<!-- Custom scripts -->
+<!-- ***************-->
+<script>
+	// Alle code in een bestand. Normaal gesproken zou u dit
+	// verspreiden over verschillende bestanden en mappen.
+
+	// 1. Module maken.
+	angular.module('myApp', []);
+
+	// 2. Controller, factory en globals maken
+	angular.module('myApp')
+			.controller('myController', myController);
+
+	// 3. Controller implementeren
+	function myController() {
+		var vm = this;
+		vm.checked = true;
+	}
+</script>
+</body>
+</html>

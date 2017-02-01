@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Directive in eigen module</title>
+	<link href="../css/bootstrap.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container">
+	<h2>Directive in eigen module</h2>
+	<!-- Drie keer een custom directive -->
+	<div my-clock timezone="NL" city="Amsterdam" offset="0"></div>
+	<div my-clock timezone="USA" city="Las Vegas" offset="-9"></div>
+	<div my-clock timezone="THAI" city="Bangkok" offset="6"></div>
+</div>
+
+<!-- ***************-->
+<!-- Vendor scripts -->
+<!-- ***************-->
+<script src="../js/vendor/angular/angular.js"></script>
+<script src="../js/H08/script_0806_clockDirective.js"></script>
+<!-- ***************-->
+<!-- Custom scripts -->
+<!-- ***************-->
+<script>
+	//**************************
+	// Directive als aparte module injecteren
+	//***********************
+	(function () {
+		// 1. Module maken en clock-directive importeren
+		angular.module('myApp', ['PK.clock']);
+	})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>jQuery plug-in gebruiken in Directive</title>
+	<link href="../css/bootstrap.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container">
+	<h2>jQuery plug-in gebruiken in Directive</h2>
+	<div>Hebt u een vraag over onze dienstverlening?
+		<span my-popover
+			 popover-html="Onze supportafdeling is 24/7 beschikbaar via chat en via support@mijnbedrijf.nl"
+			 popover-placement="bottom"
+			 popover-label="Neem ontact op met onze supportafdeling"></span>
+	</div>
+</div>
+
+<!-- ***************-->
+<!-- Vendor scripts -->
+<!-- ***************-->
+<script src="../js/vendor/angular/angular.js"></script>
+<script src="../js/vendor/jquery/jquery.min.js"></script>
+<script src="../js/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- ***************-->
+<!-- Custom scripts -->
+<!-- ***************-->
+<script src="../js/H08/script_0808_popoverDirective.js"></script>
+<script>
+	//**************************
+	// Directive als aparte module injecteren
+	//***********************
+	(function () {
+		// 1. Module maken en clock-directive importeren
+		angular.module('myApp', ['PK.popover']);
+	})();
+
+</script>
+</body>
+</html>

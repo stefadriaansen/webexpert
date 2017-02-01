@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html ng-app>
+<head>
+	<title>Template AngularJS</title>
+	<link href="../css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+
+	<div class="container">
+		<h1>01 - Simple data binding</h1>
+
+		<input type="text" ng-model="firstName" 
+			   class="input-lg" placeholder="typ je naam..." />
+		<h2>Hello {{ firstName }} </h2>
+
+		<hr />
+		<h2>ng-model voor een selectievakje</h2>
+		<input type="checkbox"			   
+			   value="yellow"
+			   ng-model="color" />Geel
+		<p>Gechecked : {{ color }}</p>
+
+
+		<h2>Aangepaste ng-true-value en ng-false-value</h2>
+		<input type="checkbox"
+			   value="yellow"
+			   ng-model="colorWithValue"
+			   ng-true-value="'Geel is geselecteerd'"
+			   ng-false-value="'Geel is niet geselecteerd'" />Geel
+		<p>Gechecked : {{ colorWithValue }}</p>
+	</div>
+
+
+	<!-- ***************-->
+	<!-- Vendor scripts -->
+	<!-- ***************-->
+	<script src="../js/vendor/angular/angular.js"></script>
+
+	<!-- ***************-->
+	<!-- Custom scripts -->
+	<!-- ***************-->
+	<script>
+		// ...eigen script
+	</script>
+</body>
+</html>

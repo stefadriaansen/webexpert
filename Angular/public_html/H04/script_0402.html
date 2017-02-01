@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Routing configureren</title>
+	<link href="../css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+
+	<div class="container" >
+		<header>
+			... <!-- logo, hoofdnavigatie en meer -->
+		</header>
+		<h1>DEMO: Routing configureren (deze app doet nog niks)</h1>
+		<div ng-view>
+			<!-- Hierin worden dynamisch de Views geladen -->
+		</div>
+		<footer>
+			... <!-- copyright, disclaimer, enzovoort -->
+		</footer>
+	</div>
+
+
+	<!-- ***************-->
+	<!-- Vendor scripts -->
+	<!-- ***************-->
+	<script src="../js/vendor/angular/angular.js"></script>
+	<script src="../js/vendor/angular-route/angular-route.js"></script>
+
+	<!-- ***************-->
+	<!-- Custom scripts -->
+	<!-- ***************-->
+	<script>	
+		// 0. Algemene schrijfwijze voor configuratie van routes:
+
+		// 1. Dependency op ngRoute toevoegen.
+		angular.module('myApp', ['ngRoute'])
+			.config(moduleConfig);
+
+		// 2. Inject dependencies
+		moduleConfig.$inject = ['$routeProvider'];
+
+		// 3. Routes configureren
+		function moduleConfig($routeProvider) {
+			$routeProvider.when('/view1', {
+				//...
+			})
+			.when('/view2', {
+				//...
+			})
+			.otherwise({
+				redirectTo: '/'
+			})
+		}
+		
+	</script>
+</body>
+</html>

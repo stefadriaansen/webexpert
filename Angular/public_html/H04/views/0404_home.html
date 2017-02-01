@@ -1,0 +1,11 @@
+﻿<div>
+	<h1>Kies een persoon</h1>
+	<!-- 1. De lijst met namen -->
+	<ul>
+		<li ng-repeat="person in homeCtrl.persons">
+			<a ng-href="#/detail/{{person.id}}">
+				{{person.id}} - {{ person.name }} {{ person.lastname }}
+			</a>
+		</li>
+	</ul>
+</div>

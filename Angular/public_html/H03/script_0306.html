@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Module en controller in aparte bestanden</title>
+	<link href="../css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="container" ng-controller="myController">
+		<h1>Kies een persoon</h1>
+		<!-- 1. De lijst met namen -->
+		<ul>
+			<li ng-repeat="person in persons">
+				<a href="#" ng-click="showDetail(person)">
+					{{ person.name }} {{ person.lastname }}
+				</a>
+			</li>
+		</ul>
+		<hr />
+		<!-- 2. Details per persoon -->
+		<div>
+			<h3>{{ voornaam }} {{ achternaam }} </h3>
+			<strong>{{ leeftijd }} jaar </strong>,
+			<a href="mailto:{{ email }}">{{ email }}</a>
+		</div>
+	</div>
+	<!-- ***************-->
+	<!-- Vendor scripts -->
+	<!-- ***************-->
+	<script src="../js/vendor/angular/angular.js"></script>
+	<!-- ***************-->
+	<!-- Custom scripts -->
+	<!-- ***************-->
+	<script src="../js/H03/script_0306_app.js"></script>
+	<script src="../js/H03/script_0306_controller.js"></script>
+</body>
+</html>

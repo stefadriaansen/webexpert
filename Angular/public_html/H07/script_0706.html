@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>ng-mousemove</title>
+	<link href="../css/bootstrap.css" rel="stylesheet"/>
+</head>
+<style>
+	.box{
+		width: 300px;
+		height: 300px;
+		border: 4px solid #333;
+		border-radius: 4px;
+		background-color: #eee;
+		color: #000;
+	}
+
+</style>
+<body>
+
+<div class="container" ng-controller="myController as myCtrl">
+	<h1>ng-mousemove</h1>
+	<div class="box" ng-mousemove="myCtrl.calculatePosition($event)">
+		<h2>{{ myCtrl.position }}</h2>
+	</div>
+</div>
+
+
+<!-- ***************-->
+<!-- Vendor scripts -->
+<!-- ***************-->
+<script src="../js/vendor/angular/angular.js"></script>
+
+<!-- ***************-->
+<!-- Custom scripts -->
+<!-- ***************-->
+<script>
+	// Alle code in een bestand. Normaal gesproken zou u dit
+	// verspreiden over verschillende bestanden en mappen.
+
+	// 1. Module maken.
+	angular.module('myApp', []);
+
+	// 2. Controller, factory en globals maken
+	angular.module('myApp')
+			.controller('myController', myController);
+
+	// 3. Controller implementeren
+	function myController() {
+		var vm = this;
+		vm.calculatePosition= function ($event) {
+			vm.position ='(' + $event.offsetX + ', ' + $event.offsetY + ')';
+		}
+	}
+</script>
+</body>
+</html>

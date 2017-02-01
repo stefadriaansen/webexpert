@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Custom directives</title>
+	<link href="../css/bootstrap.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container">
+	<h2>Custom directives - Gegevens doorgeven</h2>
+	<!-- Drie keer een custom directive -->
+	<div my-clock timezone="NL" city="Amsterdam" offset="0"></div>
+	<div my-clock timezone="USA" city="Las Vegas" offset="-9"></div>
+	<div my-clock timezone="THAI" city="Bangkok" offset="6"></div>
+</div>
+
+<!-- ***************-->
+<!-- Vendor scripts -->
+<!-- ***************-->
+<script src="../js/vendor/angular/angular.js"></script>
+
+<!-- ***************-->
+<!-- Custom scripts -->
+<!-- ***************-->
+<script>
+	//**************************
+	// Isolated scope, doorgeven van parameters
+	//***********************
+
+	// 1. Module maken.
+	angular.module('myApp', []);
+
+	// 2. Directive maken
+	angular.module('myApp')
+			.directive('myClock', myClock);
+
+	// 3. Directive implementeren
+	function myClock() {
+		var directive = {
+			template: '<div>{{ vm.city }} ({{vm.difference}}): {{ vm.time | date : "HH:mm:ss"}}</div>',
+			controller: clockController,	// controllerfunctie
+			controllerAs: 'vm',				// controllerAs-alias
+			bindToController: true,
+			scope : {
+				timezone: '@',
+				city: '@',
+				offset: '@'
+			}
+		};
+		return directive;
+	}
+
+	// 4. Controller voor de directive
+	clockController.$inject=['$interval'];
+	function clockController($interval){
+		var vm = this;
+		console.log('Timezone: ' + vm.timezone); // simpele logging
+		// interval loop
+		var update= $interval(function () {
+			var offset = parseInt(vm.offset),	// integer van van maken
+				here = new Date(),
+				there = new Date();
+
+			vm.difference = offset > 0
+					? offset + ' uur later'
+					: offset + ' uur vroeger';
+			there.setHours(here.getHours() + offset);
+			vm.time = there;
+		}, 1000);
+	}
+</script>
+</body>
+</html>

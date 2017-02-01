@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="testApp">
+<head>
+	<title>TestApp</title>
+	<link href="css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+
+	<div class="container" >
+		<h1>TestApp</h1>
+		<div ng-view>
+			<!-- Hierin worden dynamisch de Views geladen -->
+		</div>
+	</div>
+
+
+	<!-- ***************-->
+	<!-- Vendor scripts -->
+	<!-- ***************-->
+	<script src="js/vendor/angular/angular.js"></script>
+	<script src="js/vendor/angular-route/angular-route.js"></script>
+
+	<!-- ***************-->
+	<!-- Custom scripts -->
+	<!-- ***************-->
+	<script src="app/app.js"></script>
+	<script src="controllers/homeController.js"></script>
+	<script src="services/personFactory.js"></script>
+
+</body>
+</html>

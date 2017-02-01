@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Selectielijsten en ng-change</title>
+	<link href="../css/bootstrap.css" rel="stylesheet"/>
+
+</head>
+
+<body>
+
+<div class="container" ng-controller="myController as myCtrl">
+	<h1>Selectielijsten en ng-change</h1>
+
+	<select name="list1"
+			ng-change="myCtrl.changeCountry()"
+			ng-model="myCtrl.countryChoice">
+		<option ng-repeat="country in myCtrl.countries">{{ country }}</option>
+	</select>
+
+	<p>Gekozen land: {{ myCtrl.selectedCountry }}</p>
+
+	<h2>Lijst 2: Fruit via for-in</h2>
+	<select ng-model="myCtrl.fruitChoice"
+			ng-options="f.name for f in myCtrl.fruit track by f.id"
+			ng-change="myCtrl.changeFruit()">
+	</select>
+
+	<p ng-show="myCtrl.selectedFruit">
+		Gekozen fruit: {{ myCtrl.selectedFruit.name }},
+		&euro; {{ myCtrl.selectedFruit.price}}
+		(id: {{ myCtrl.selectedFruit.id}})
+	</p>
+</div>
+
+
+<!-- ***************-->
+<!-- Vendor scripts -->
+<!-- ***************-->
+<script src="../js/vendor/angular/angular.js"></script>
+
+<!-- ***************-->
+<!-- Custom scripts -->
+<!-- ***************-->
+<script>
+	// Alle code in een bestand. Normaal gesproken zou u dit
+	// verspreiden over verschillende bestanden en mappen.
+
+	// 1. Module maken.
+	angular.module('myApp', []);
+
+	// 2. Controller, factory en globals maken
+	angular.module('myApp')
+			.controller('myController', myController);
+
+	// 3. Controller implementeren
+	function myController() {
+		var vm = this;
+		vm.countryChoice = '';
+		vm.fruitChoice = '';
+		// 1. Lijst en logica - Landen
+		vm.countries = [
+			'Nederland',
+			'Belgie',
+			'Luxemburg',
+			'Duitsland',
+			'Frankrijk',
+			'Spanje',
+			'Zweden',
+			'Portugal',
+			'Italie',
+			'Polen',
+			'Denemarken',
+			'Noorwegen'
+		].sort();
+
+		vm.changeCountry = function () {
+			vm.selectedCountry = vm.countryChoice;
+		}
+
+		// 2. Lijst en logica - fruit-objecten
+		vm.fruit = [
+			{id: 1, name: 'Peer', price: '3,99'},
+			{id: 2, name: 'Appel', price: '1,85'},
+			{id: 3, name: 'Druif', price: '2,99'},
+			{id: 4, name: 'Mango', price: '4,25'},
+			{id: 5, name: 'Mandarijn', price: '1,99'},
+			{id: 6, name: 'Banaan', price: '2,49'},
+			{id: 7, name: 'Ananas', price: '4,49'}
+		];
+
+		vm.changeFruit = function () {
+			vm.selectedFruit = vm.fruitChoice;
+		};
+	}
+</script>
+</body>
+</html>

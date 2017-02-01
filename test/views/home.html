@@ -1,0 +1,16 @@
+<div>
+	<h1>Kies een persoon</h1>
+	<!-- 1. De lijst met namen -->
+	<ul>
+		<li ng-repeat="person in homeCtrl.persons">
+				{{person.id}} - {{ person.name }} {{ person.lastname }}
+		</li>
+	</ul>
+
+	<div ng-show="myCtrl.errorMsg">
+		<h3>Foutmelding van de server: </h3>
+		{{ homeCtrl.test }}
+		<hr />
+		<p><em>Status: {{ homeCtrl.status }} </em></p>
+	</div>
+</div>
