@@ -1,0 +1,18 @@
+[
+  {
+    "merk": "Mercedes",
+    "basisprijs": 250000
+  },
+  {
+    "merk": "Ford",
+    "basisprijs": 180000
+  },
+  {
+    "merk": "Opel",
+    "basisprijs": 19500
+  },
+  {
+    "merk": "Volkswagen",
+    "basisprijs": 21000
+  }
+]

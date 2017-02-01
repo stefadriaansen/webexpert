@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./angular-1.6.1/angular.js"></script>
+    <script src="./angular-1.6.1/angular-route.js"></script>
+</head>
+<body>
+<table style="width:100%">
+    <tr>
+        <th><a href="#!/home">Auto</a></th>
+        <th><a href="#!/config">Configurator</a></th>
+        <th><a href="#!/overzichtOfferte">OverzichtOfferte</a></th>
+    </tr>
+</table>
+<div ng-view>
+
+</div>
+<script src="app/app.js"></script>
+<!-- Controllers -->
+<script src="controllers/homeController.js"></script>
+<script src="controllers/configController.js"></script>
+<script src="controllers/overzichtOfferteController.js"></script>
+<script src="factories/carFactory.js"></script>
+
+<!-- Factory -->
+
+</body>
+</html>

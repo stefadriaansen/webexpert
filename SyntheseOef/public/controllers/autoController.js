@@ -10,12 +10,12 @@
 	function autoController(carFactory) {
 		var vm = this;
 
-		carFactory.getCars()
-				.success(function (autos) {
-					vm.autos = autos;
-				})
-				.error(function (err, status) {
-					alert(err);
-				});
+		 carFactory.getCars()
+            .then(function(response){
+                vm.cars = response.data
+            })
+            .catch(function (err) {
+            alert('Er is een fout opgetreden!\n' + err)
+        });
 	}
 })();

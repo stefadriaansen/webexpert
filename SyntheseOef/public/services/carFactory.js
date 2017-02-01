@@ -1,31 +1,22 @@
 // personFactory.js
 (function () {
-	'use strict';
+    'use strict';
 
-	// Definitie van de carFactory
-	angular.module('carApp')
-		.factory('carFactory', carFactory);
+    // Definitie van de personFactory
+    angular.module('carApp')
+        .factory('carFactory', carFactory);
 
-	carFactory.$inject = ['$http', 'GLOBALS'];
-	function carFactory($http, GLOBALS) {
-		
-		var factory = {}
+    // Implementatie van personFactory
+    carFactory.$inject = ['$http'];
+    function carFactory($http) {
+        var factory = {};
 
-
-		factory.getCars = function () {
-			return $http({
-				url: GLOBALS.carUrl,
-				method: 'GET'
-			});
-		}
-
-		factory.getOptions = function () {
-			return $http({
-				url: GLOBALS.optionsUrl,
-				method: 'GET'
-			});
-		}
-		return factory;
-	}
-
+        factory.getCars = function(){
+            return $http({
+                method:'GET',
+                url: 'data/automerk.json'
+            })
+        }
+        return factory;
+    }
 })();

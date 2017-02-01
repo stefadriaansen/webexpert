@@ -1,0 +1,8 @@
+<div>
+   <p>List Of Cars</p>
+   <select >
+      <option disabled selected value> -- select an option -- </option>
+      <option ng-repeat="car in homeCtrl.cars" value={{car.merk}}>{{ car.merk}}</option>
+
+   </select>
+</div>
