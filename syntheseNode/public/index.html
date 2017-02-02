@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Synthese Oefening</title>
+
+    <!-- Angular en Bootstrap uit node_modules (map verkregen door npm install te doen). -->
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="../node_modules/angular/angular.js"></script>
+</head>
+<body>
+
+<div class="container" >
+    <header>
+        <a class="col-xs-6 col-md-4 bg-primary" ng-href="#!/auto"><h5>Auto</h5></a>
+        <!-- De h5 endtag had geen /, deze toegevoegd. -->
+        <a class="col-xs-6 col-md-4 bg-primary" ng-href="#!/configurator"><h5>Configurator</h5></a>
+        <!-- De h5 endtag had geen /, deze toegevoegd. -->
+        <a class="col-xs-6 col-md-4 bg-primary" ng-href="#!/overzicht"><h5>Overzicht offerte</h5></a>
+    </header>
+
+    <!-- Hierin worden dynamisch de Views geladen -->
+    <div ng-view>
+    </div>
+
+    <footer>
+    </footer>
+</div>
+
+<!-- ***************-->
+<!-- Custom scripts -->
+<!-- ***************-->
+<!-- Uit node_mdules na npm install. Van boven naar hier geplaatst. -->
+<script src="../node_modules/angular-route/angular-route.js"></script>
+<script src="app/app.js"></script>
+
+<script src="controllers/autoController.js"></script>
+<script src="controllers/configuratorController.js"></script>
+<script src="controllers/ozController.js"></script>
+
+<script src="services/carFactory.js"></script>
+</body>
+</html>

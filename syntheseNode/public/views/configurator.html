@@ -1,0 +1,35 @@
+<div>
+    <h5>Gekozen automerk: {{configuratorCtrl.car.merk}} ---- Basisuitrusting: {{configuratorCtrl.car.basisprijs}}</h5>
+    Mogelijke opties
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Optie</th>
+                <th>Prijs exclusief BTW</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="optie in configuratorCtrl.opties">
+                <td><a ng-click="configuratorCtrl.addOptie(optie)">{{optie.optie}}</a></td>
+                <td>{{optie.prijs}} €</td>
+            </tr>
+        </tbody>
+    </table>
+    Lijst van de gekozen opties
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="own in configuratorCtrl.ownOpties">
+            <td>{{own.optie}}</td>
+            <td>{{own.prijs}} €</td>
+        </tr>
+        </tbody>
+        <a ng-click="configuratorCtrl.emptyOwnOpties()" class="btn btn-lg btn-primary">Leeg maken</a>
+    </table>
+
+</div>

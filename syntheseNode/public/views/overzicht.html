@@ -1,0 +1,51 @@
+<div>
+     <table class="table">
+         <tr>
+             <td>Gekozen automerk:</td>
+             <td>{{ozCtrl.car.merk}}</td>
+             <td>Basisuitrusting:</td>
+             <td>{{ozCtrl.car.basisprijs}}</td>
+         </tr>
+         <tr>
+             <td></td>
+             <td></td>
+             <td>Totaal opties:</td>
+             <td>{{ozCtrl.optiePrijs}}</td>
+         </tr>
+         <tr>
+             <td></td>
+             <td></td>
+             <td>Totaal, excl. BTW:</td>
+             <td>{{ozCtrl.car.basisprijs + ozCtrl.optiePrijs}}</td>
+         </tr>
+         <tr>
+             <td></td>
+             <td></td>
+             <td>BTW(21%):</td>
+             <td>{{0.21*(ozCtrl.car.basisprijs + ozCtrl.optiePrijs)}}</td>
+         </tr>
+         <tr>
+             <td></td>
+             <td></td>
+             <td>Totaal opties:</td>
+             <td>{{1.21*(ozCtrl.car.basisprijs + ozCtrl.optiePrijs)}}</td>
+         </tr>
+     </table>
+
+    <br/>
+    Lijst van de gekozen opties
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="own in ozCtrl.ownOpties">
+            <td>{{own.optie}}</td>
+            <td>{{own.prijs}} €</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
