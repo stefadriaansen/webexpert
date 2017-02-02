@@ -1,0 +1,9 @@
+<div>
+    <p>Automerk
+    <select
+            ng-change="homeCtrl.changeCar()"
+            ng-model="homeCtrl.chosenCar"
+            ng-options="car.merk for car in homeCtrl.cars">
+    </select>
+    </p>
+</div>

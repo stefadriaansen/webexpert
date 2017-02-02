@@ -1,0 +1,30 @@
+<div>
+    <p>
+        Gekozen Automerk: {{confCtrl.car.merk}}
+    </p>
+    <p>
+        Basisuitrusting:  {{confCtrl.car.basisprijs}}
+    </p>
+
+    <p><b>Mogelijke opties</b></p>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Optie</th>
+            <th>Prijs Exclusief BTW</th>
+        </tr>
+        <tr ng-repeat="option in confCtrl.options">
+            <td><a ng-click="confCtrl.addOption(option)">{{option.optie}}</a></td>
+            <td>{{option.prijs}}</td>
+        </tr>
+    </table>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="own in confCtrl.ownOptions">
+            <td>{{own.optie}}</td>
+            <td>{{own.prijs}}</td>
+        </tr>
+    </table>
+</div>

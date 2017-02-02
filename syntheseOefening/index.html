@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/node_modules/angular/angular.js"></script>
+    <script src="../js/node_modules/angular-route/angular-route.js"></script>
+    <link href="../js/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+    <script src="app/app.js"></script>
+    <script src="factory/carFactory.js"></script>
+    <script src="factory/optionFactory.js"></script>
+    <script src="controllers/homeController.js"></script>
+    <script src="controllers/configurateController.js"></script>
+    <script src="controllers/offerteController.js"></script>
+    <!--<link href="autowebapp/css/autoweb.css" rel="stylesheet" type="text/css"/>-->
+</head>
+<body>
+<div>
+    <table style="width:100%">
+        <tr>
+            <th><a href="#!/home">Auto</a></th>
+            <th><a href="#!/configurate">Configurator</a></th>
+            <th><a href="#!/overzichtOfferte">OverzichtOfferte</a></th>
+        </tr>
+    </table>
+    <div ng-view>
+</div>
+</div>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<div>
+    <p>Gekozen automerk: {{ofCtrl.chosenCar.prijs}}</p>
+    <p>Totaal opties: {{ofCtrl.prijsOpties}}</p>
+    <p>Totaal excl. BTW: {{ofCtrl.totaalExBtw}}</p>
+
+
+
+    <p><b>Lijst van de gekozen opties</b></p>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="option in ofCtrl.chosenOptions">
+            <td>{{option.optie}}</td>
+            <td>{{option.prijs}}</td>
+        </tr>
+    </table>
+</div>
