@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f39bf969-d101-42ec-b751-48cdea0f8e0f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebExpert" afterPath="$PROJECT_DIR$/WebExpert" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />

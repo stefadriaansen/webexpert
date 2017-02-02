@@ -25,11 +25,11 @@
 
         
         vm.addOptie = function (newOptie) {
-            carFactory.addOptie(newOptie);
+            vm.ownOpties = carFactory.addOptie(newOptie);
         };
 
         vm.emptyOwnOpties = function () {
-            carFactory.emptyOwnOpties();
+            vm.ownOpties = carFactory.emptyOwnOpties();        
         }
     }
 })();

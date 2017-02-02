@@ -40,6 +40,14 @@
 
         // 3. Defineer een API met methods voor deze factory
         factory.getOwnOpties = function () {
+             $http({
+                method:'GET',
+                url: 'http://localhost:3000/api/ownOpties'
+                    }).then(function(response){
+                        opties = response.data;
+                    }).catch(function(err){
+                        alert('Error: er is een fout opgetreden ' + err);
+                    });
             return opties;
         }
 
@@ -48,11 +56,30 @@
         }
 
         factory.emptyOwnOpties = function () {
-            opties.length = 0;
+             $http({
+                method:'GET',
+                url: 'http://localhost:3000/api/emptyOwnOpties'
+                    }).then(function(response){
+                        opties = response.data;
+                    }).catch(function(err){
+                        alert('Error: er is een fout opgetreden ' + err);
+                    });
+            return opties;
         }
 
         factory.addOptie = function (newOptie) {
-            opties.push(newOptie);
+            //opties.push(newOptie);
+
+            $http({
+			method:'POST',
+			url: 'http://localhost:3000/api/ownOpties',
+            data: newOptie
+                }).then(function(response){
+                    opties = response.data;
+                }).catch(function(err){
+                    alert('Error: er is een fout opgetreden ' + err);
+                });
+            return opties;
         }
 
         // 4. Tot slot: retourneer factory-object

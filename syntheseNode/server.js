@@ -10,6 +10,7 @@ var app = express();
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(bodyParser.json());
 
 // 4. Stel middleware in voor serveren van statische bestanden (HTML, CSS, images)
 app.use(express.static('public'));
